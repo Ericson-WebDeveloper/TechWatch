@@ -1,0 +1,1 @@
+export const CART_ACTION = 'CART_ACTION';
