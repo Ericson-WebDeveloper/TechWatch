@@ -134,7 +134,7 @@ const CheckOut = (props: CheckOutProps) => {
 
     const setUpStripeCard = async () => {
         setStripeLoading(true);
-        stripe.stripe = await loadStripe('pk_test_51H0dohKWzaP0y47nQh5ROSibytHPoMgYCLtn7oUPao6uS1YESA2wawByOyVvv0idlQtWAW59Pb8NU6yk4wufxe6y00C5UzoV3b');    
+        stripe.stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLICKEY || '');    
         let elements = stripe.stripe.elements();
         let c = elements.create('card');
         setStripe((prev) => ({...prev, 'cardElement': c}));
