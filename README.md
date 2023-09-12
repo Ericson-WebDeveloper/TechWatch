@@ -12,4 +12,5 @@ Tech Watch
 
 ![screencapture-techwatch-store-netlify-app-checkout-shop-2023-09-12-20_04_32](https://github.com/Ericson-WebDeveloper/TechWatch/assets/60337201/236f7d07-f7dc-4b35-a004-2f0c97cb8410)
 
-![Uploading screencapture-techwatch-store-netlify-app-payment-true-card-2023-09-12-20_04_51.png…]()
+![screencapture-techwatch-store-netlify-app-payment-true-card-2023-09-12-20_04_51](https://github.com/Ericson-WebDeveloper/TechWatch/assets/60337201/1f43fdd0-668f-4564-9be6-1b802d058bd4)
+
