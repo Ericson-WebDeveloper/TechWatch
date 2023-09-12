@@ -5,12 +5,6 @@ export const productApi = createApi({
     reducerPath: 'productApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000',
     prepareHeaders: (headers, { getState, endpoint }) => {
-        // const token = (getState() as RootState).user.token
-        // // console.log(endpoint);
-        // // console.log(token);
-        // if (token) {
-        //     headers.set('Authorization', `Bearer ${token}`)
-        // }
         headers.set('accept','application/json');
         return headers
       },
