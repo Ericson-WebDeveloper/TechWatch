@@ -62,10 +62,6 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('/payment-card/capture', [PaymentController::class, 'stripeCapture']);
 });
 
-// Route::middleware(['auth', 'second'])->group(function () {
-
-// });
-
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/products', [ProductsController::class, 'index']);
 Route::post('/user/register', [AuthController::class, 'register']);
