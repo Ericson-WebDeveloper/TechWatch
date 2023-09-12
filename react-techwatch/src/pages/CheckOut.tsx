@@ -21,13 +21,6 @@ interface stripecard {
     processing: boolean,
     card_error: null | string,
     createPaymentMethod: any | null
-    //   card: {
-    //     name_card: '',
-    //     number: '',
-    //     cvc: '',
-    //     exp_month: '',
-    //     exp_year: ''
-    //   }
 }
 
 const schema = yup.object({
