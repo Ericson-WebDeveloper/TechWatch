@@ -35,26 +35,6 @@ const SignUp = (props: SignUpProps) => {
 
     const signUpUser: SubmitHandler<SignUpInterface> = async (formData) => {
         await registerUser(formData)
-    //    try {
-    //         let response = await registerUser(formData).unwrap();
-    //         toast.success(response.message || "Request Success");
-    //         setTimeout(() => {
-    //             navigate(`/signin`);
-    //         }, 1500);
-    //    } catch (error: any) {
-    //     if(error.status === 400) {
-    //         toast.error(error.data.error);
-    //     } else if(error.status === 422) {
-    //         let errors: any = error.data.errors;
-    //         let keys = Object.keys(error.data.errors);
-    //         keys.forEach((key) => {
-    //             let key1 = key as string;
-    //             toast.error(errors[key1 as keyof typeof errors][0])
-    //         })
-    //     } else {
-    //         toast.error(error.data.error || error.data.message);
-    //     }
-    //    }
     }
 
     useEffect(() => {
