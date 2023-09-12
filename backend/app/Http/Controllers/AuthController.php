@@ -81,13 +81,6 @@ class AuthController extends Controller
         try {
             $user = Socialite::driver($request->provider)->stateless()->user();
 
-            // All providers...
-            // $user->getId();
-            // $user->getNickname();
-            // $user->getName();
-            // $user->getEmail();
-            // $user->getAvatar();
-
             $userexist = User::where('email', $user->getEmail())->first();
 
             if($userexist) {
