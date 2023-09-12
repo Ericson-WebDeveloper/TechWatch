@@ -10,20 +10,13 @@ type IndexProps = {}
 
 const Index = (props: IndexProps) => {
   let [searchCategory, setSearchCategory] = useSearchParams();
-  // const [category, setCategory] = useState("all");
-  // Using a query hook automatically fetches data and returns query values
+ 
   const { data, error, isLoading } = useGetProductsQuery(searchCategory.get('filter') || 'all')
-  // Individual hooks are also accessible under the generated endpoints:
-  // const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur');
+
   
   if(isLoading) {
     return <Spinner />
   }
-  // if(error) {
-  //   if("data" in error) toast.error(error.data.)
-    
-  // }
-
 
   return (
     <div className='flex w-full h-auto'>
