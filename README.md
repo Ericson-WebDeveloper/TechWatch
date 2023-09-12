@@ -1,5 +1,7 @@
 Tech Watch
 
+![screencapture-techwatch-store-netlify-app-2023-09-12-20_15_17](https://github.com/Ericson-WebDeveloper/TechWatch/assets/60337201/15c4401a-0b4c-4233-b539-a3e869252328)
+
 ![screencapture-techwatch-store-netlify-app-signin-2023-09-12-20_01_58](https://github.com/Ericson-WebDeveloper/TechWatch/assets/60337201/c699fc5d-4620-454b-92e8-15dedd7acad4)
 
 ![screencapture-techwatch-store-netlify-app-signup-2023-09-12-20_02_04](https://github.com/Ericson-WebDeveloper/TechWatch/assets/60337201/161fb68a-841d-475b-8725-eec09a308fa0)
