@@ -27,16 +27,8 @@ class PaymentController extends Controller
     public function stripePost(Request $request)
     {
         try{
-            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            // $response = Stripe\Charge::create([
-            //         "amount" => 1 * 100,
-            //         "currency" => "usd",
-            //         "source" => $request->stripeToken,
-            //         "description" => "Order Payment for techWatch Website"
-            // ]);
 
             $ch = curl_init();
-
             $array = [
                 "amount" => $request->amount * 100,
                 "currency" => "usd",
@@ -56,9 +48,6 @@ class PaymentController extends Controller
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             $result = curl_exec($ch);
-            // if (curl_errno($ch)) {
-            //     echo 'Error:' . curl_error($ch);
-            // }
             curl_close($ch);
             $newresult = json_decode($result);
             $payment_intents_id = $newresult->id;
@@ -76,9 +65,6 @@ class PaymentController extends Controller
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
             $result2 = curl_exec($curl);
-            // if (curl_errno($ch)) {
-            //     echo 'Error:' . curl_error($ch);
-            // }
             curl_close($curl);
 
             $response = json_decode($result2);
@@ -195,8 +181,6 @@ class PaymentController extends Controller
                 "brand_name" => "TechWatch Payment",
                 "shipping_preference" => "NO_SHIPPING",
                 "user_action" => "PAY_NOW",
-                // "return_url" => "http://localhost:8080/payment-done?success=true",
-                // "cancel_url" => "http://localhost:8080/payment-done?success=false"
                 "return_url" => "http://localhost:3000/payment-done?success=true",
                 "cancel_url" => "http://localhost:3000/payment-done?success=false"
             ]
@@ -221,7 +205,6 @@ class PaymentController extends Controller
             }
         }
     
-        // $orderId = (string) Str::uuid();
         // store Order and Order_Item
         $order = Order::create([
             // 'id' => (string) Str::uuid(),
@@ -349,16 +332,10 @@ class PaymentController extends Controller
                 'order' => $orderUpdate,
                 'items' => $orderUpdate->orderItem()
             ];
-
-            // Mail::to($orderUpdate->orderItem->details->email)->send(new OrderNotification($data, "verify"));
             $this->sendEmail("verify", $orderUpdate->orderItem->details->email, $data);
 
             return response()->json([
                 'response' => $res,
-                // 'data' => [
-                //     'order' => $orderUpddate,
-                //     'details' => $orderUpddate->orderItem()
-                // ]
             ], 200);
 
         }catch(\Exception $e) {
