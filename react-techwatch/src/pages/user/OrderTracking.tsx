@@ -53,11 +53,7 @@ const OrderTracking = (props: OrderTrackingProps) => {
                             <div className="flex">
                                 <h5>ORDER REF#<span className="text-primary font-weight-bold"> {data?.data?.approval_id}</span></h5>
                             </div>
-                            {/* <div className="flex flex-col text-sm-right"> */}
-                              {/* {if order.order_status == 'shipped'} */}
-                                {/* Expected Arrival: {returnArrivalDate(data?.data?.created_at!)} */}
-                                {/* <p>USPS <span className="font-weight-bold">234094567242423422898</span></p> */}
-                            {/* </div> */}
+                    
                         </div>
                         {/* <!-- Add className 'active' to progress --> */}
                         <div className="flex flex-row justify-center">
