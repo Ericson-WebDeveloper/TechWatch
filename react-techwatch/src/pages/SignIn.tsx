@@ -32,11 +32,6 @@ const SignIn = (props: SignInProps) => {
 
     const onSubmit: SubmitHandler<SigInInterface> = async (formData) => {
         await (loginUser(formData));
-        // console.log('here data ', data);
-        // console.log('here isLoading ', isLoading);
-        // console.log('here isError ', isError);
-        // console.log('here isSuccess ', isSuccess);
-        // console.log('here error ', error);
     };
 
     const loginwith = async (provider: string) => {
