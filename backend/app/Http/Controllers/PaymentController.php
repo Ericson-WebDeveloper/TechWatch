@@ -21,7 +21,7 @@ class PaymentController extends Controller
 
     public function __construct()
     {
-        $this->credentials = base64_encode("AYmeSXIfoqQtcI5BcS_onBV19S3SXajWVlGRV32fe-r6adQlRse_MN_f2oWiFwxHmj29H5iQtB50L6IN:EHEnePOMSTBYo3iYcd1fOTxXcE_LrkxQRMWL9AttKgOdrsUAWpSTRvUMtHsrFbhDqa6TFHr8WTqWyXEh");
+        $this->credentials = base64_encode("");
     }
 
     public function stripePost(Request $request)
@@ -44,7 +44,7 @@ class PaymentController extends Controller
 
             $headers = array();
             $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-            $headers[] = "Authorization: Bearer sk_test_51H0dohKWzaP0y47nwJHdOzaVFfh0vQXjuKTT8izINS5GvuoUT1jNcM0WD5fvLn1bNOEhurk39Wfyq6rkmkXpWiuO00sWCHCqkB";
+            $headers[] = "Authorization: Bearer ";
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             $result = curl_exec($ch);
@@ -61,7 +61,7 @@ class PaymentController extends Controller
 
             $headers = array();
             $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-            $headers[] = "Authorization: Bearer sk_test_51H0dohKWzaP0y47nwJHdOzaVFfh0vQXjuKTT8izINS5GvuoUT1jNcM0WD5fvLn1bNOEhurk39Wfyq6rkmkXpWiuO00sWCHCqkB";
+            $headers[] = "Authorization: Bearer ";
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
             $result2 = curl_exec($curl);
