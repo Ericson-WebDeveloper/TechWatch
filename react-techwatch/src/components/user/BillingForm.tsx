@@ -44,17 +44,6 @@ const BillingForm = ({billing}: BillingFormProps) => {
         await updateBillingCred(formData);
     }
 
-    // useEffect(() => {
-    //     if (billing) {
-    //         setValue('province', billing?.province);
-    //         setValue('city', billing?.city);
-    //         setValue('zip_code', billing?.zip_code || 0);
-    //         setValue('barangay', billing?.barangay);
-    //         setValue('street', billing?.street);
-    //         setValue('house_no', billing?.house_no || 0);
-    //     }
-    // }, [billing]);
-
     useEffect(() => {
         if(ErrorUpdatedBilling && errorResponse) {
             if('data' in errorResponse) {
