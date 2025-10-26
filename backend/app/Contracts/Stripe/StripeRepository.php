@@ -22,7 +22,6 @@ class StripeRepository implements PaymentInterface
         $array = [
             "amount" => $request->amount * 100,
             "currency" => "usd",
-            // "currency" => "php",
             "payment_method" => $request->stripeToken,
             "confirmation_method" => "manual"
         ];

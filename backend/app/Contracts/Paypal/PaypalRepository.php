@@ -19,6 +19,7 @@ class PaypalRepository implements PaymentInterface
     public function paymentIntent(Request $request): object
     {
         $credential = $this->credential;
+        $otherDetails = $request->details;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
@@ -35,16 +36,16 @@ class PaypalRepository implements PaymentInterface
             ],
             "payer" => [
                 "name" => [
-                    'given_name' => 'Nancy Eric',
-                    'surname' => 'Tester'
+                    'given_name' => $otherDetails['name'],
+                    'surname' => ''
                 ]
             ],
             "address" => [
-                "address_line_1" => "Cavite",
-                "address_line_2" => "Naic",
+                "address_line_1" => $otherDetails['barangay'] . " " . $otherDetails['city'] . " " . $otherDetails['province'],
+                "address_line_2" =>  $otherDetails['street'] . " " . $otherDetails['house_no'] . ", " . $otherDetails['zip_code'] . " " . $otherDetails['barangay'],
                 "admin_area_1" => "",
                 "admin_area_2" => "",
-                "postal_code" => "4110",
+                "postal_code" => $otherDetails['zip_code'],
                 "country_code" => "PH",
             ],
             "application_context" => [
