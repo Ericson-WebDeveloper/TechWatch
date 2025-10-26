@@ -1,4 +1,3 @@
-import moment from 'moment'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -39,10 +38,10 @@ const OrderTracking = (props: OrderTrackingProps) => {
     }
    
   return (
-    <div className='flex w-full h-screen'>
+    <div className='flex w-full min-h-screen'>
         <div className='flex h-full w-full mx-auto mt-5'>
-            <div className="flex flex-col w-full p-6 ">
-                <div className='flex flex-col w-full p-2'>
+            <div className="flex flex-col w-full md:p-6 ">
+                <div className='flex flex-col w-full md:p-2'>
                   {/* v-if="!error" */}
                   <div className="px-4">
                     {
@@ -56,7 +55,7 @@ const OrderTracking = (props: OrderTrackingProps) => {
                     
                         </div>
                         {/* <!-- Add className 'active' to progress --> */}
-                        <div className="flex flex-row justify-center">
+                        <div className="flex flex-col md:flex-row justify-center">
                             <div className="w-full">
                                 <ul id="progressbar" className="text-center">
                                   {/*  className="{'active': order.order_status == 'verified' }" */}
@@ -71,28 +70,28 @@ const OrderTracking = (props: OrderTrackingProps) => {
                             </div>
                         </div>
                         <div className="flex flex-row justify-between top">
-                            <div className="flex flex-row icon-content">
-                              <img className="icon" src="https://i.imgur.com/9nnc9Et.png" alt='' />
+                            <div className="flex flex-col md:flex-row icon-content gap-2">
+                              <img className=" h-[40px] md:h-[60px] w-[40px] md:w-[60px]" src="https://i.imgur.com/9nnc9Et.png" alt='' />
                                 <div className="flex flex-column">
-                                    <p className="font-weight-bold">Order<br/>Processed</p>
+                                    <p className="font-weight-bold text-xs md:text-sm lg:text-lg">Order<br/>Processed</p>
                                 </div>
                             </div>
-                            <div className="flex flex-row icon-content">
-                              <img className="icon" src="https://i.imgur.com/u1AzR7w.png" alt='' />
+                            <div className="flex flex-col md:flex-row icon-content gap-2">
+                              <img className="h-[40px] md:h-[60px] w-[40px] md:w-[60px]" src="https://i.imgur.com/u1AzR7w.png" alt='' />
                                 <div className="flex flex-column">
-                                    <p className="font-weight-bold">Order<br/>Shipped</p>
+                                    <p className="font-weight-bold text-xs md:text-sm lg:text-lg">Order<br/>Shipped</p>
                                 </div>
                             </div>
-                            <div className="flex flex-row icon-content">
-                              <img className="icon" src="https://i.imgur.com/TkPm63y.png" alt='' />
+                            <div className="flex flex-col md:flex-row icon-content gap-2">
+                              <img className="h-[40px] md:h-[60px] w-[40px] md:w-[60px]" src="https://i.imgur.com/TkPm63y.png" alt='' />
                                 <div className="flex flex-column">
-                                    <p className="font-weight-bold">Order<br/>On The Way</p>
+                                    <p className="font-weight-bold text-xs md:text-sm lg:text-lg">Order<br/>On The Way</p>
                                 </div>
                             </div>
-                            <div className="flex flex-row icon-content">
-                              <img className="icon" src="https://i.imgur.com/HdsziHP.png" alt='' />
+                            <div className="flex flex-col md:flex-row icon-content gap-2">
+                              <img className="h-[40px] md:h-[60px] w-[40px] md:w-[60px]" src="https://i.imgur.com/HdsziHP.png" alt='' />
                                 <div className="flex flex-column">
-                                    <p className="font-weight-bold">Order <br/> Arrived</p>
+                                    <p className="font-weight-bold text-xs md:text-sm lg:text-lg">Order <br/> Arrived</p>
                                 </div>
                             </div>
                         </div>

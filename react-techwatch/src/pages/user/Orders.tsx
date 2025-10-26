@@ -14,7 +14,7 @@ const Orders = (props: OrdersProps) => {
     }
   return (
     <div className='flex w-full h-auto'>
-        <div className='flex h-auto w-full mx-auto mt-5'>
+        <div className='flex h-auto w-full lg:w-[80%] mx-auto mt-4'>
             <div className="flex flex-col lg:flex-row w-full p-6 ">
                 <div className='flex flex-col w-full lg:flex-row p-2'>
                     <div className="flex flex-col w-full space-y-2">

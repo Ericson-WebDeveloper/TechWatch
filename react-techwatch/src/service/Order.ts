@@ -2,10 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IGenericResponse } from '../models/Response';
 import { RootState } from '../feature/index';
 import { orderTrackInterface } from '../pages/user/OrderTracking';
+import { configEnv } from '../helper/config';
 
 export const orderApi = createApi({
     reducerPath: 'orderApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000',
+    baseQuery: fetchBaseQuery({ baseUrl: configEnv.api_url,
     prepareHeaders: (headers, { getState, endpoint }) => {
         const token = (getState() as RootState).user.token
         if (token) {

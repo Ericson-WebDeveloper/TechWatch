@@ -28,6 +28,11 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+
+    'paypal_client_id' => env('PAYPAL_CLIENT_ID', ''),
+    'paypal_secret' => env('PAYPAL_SECRET', ''),
+    'stripe_key' => env('STRIPE_KEY', ''),
+    'stripe_secret' => env('STRIPE_SECRET', ''),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -67,7 +72,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Manila',
 
     /*
     |--------------------------------------------------------------------------

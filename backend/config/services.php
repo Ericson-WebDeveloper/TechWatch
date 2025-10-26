@@ -48,4 +48,8 @@ return [
         'redirect' => env('TWITTER_REDIRECT_URL'),
     ],
 
+    'payment' => [
+        'default' => env('PAYMENT_GATEWAY_DEFAULT', 'stripe'),
+    ],
+
 ];

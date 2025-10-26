@@ -29,17 +29,17 @@ const Billing = (props: Props) => {
   }
 
   return (
-    <div className='flex w-full h-auto lg:h-screen'>
+     <div className='flex w-full h-auto'>
         <div className='flex h-full lg:h-[600px] w-[80%] mx-auto mt-5'>
-            <div className="flex flex-col lg:flex-row w-full p-6 bg-white rounded-3xl">
-                <div className='flex flex-col w-[40%] h-full'>
+            <div className="flex flex-col lg:flex-row w-full md:p-6 bg-white rounded-2xl">
+                <div className='flex flex-col w-full lg:w-[40%] h-full'>
                   <div className='flex flex-col w-full justify-center items-center'>
                    <SideNav user={user} />
                   </div>
                 </div>
-                <div className='flex flex-col w-full h-full'>
+                <div className='flex flex-col w-full h-full p-4'>
                   <div className='flex flex-col w-full'>
-                    <h1>Profile Billing Address</h1>
+                    <h1 className='text-2xl font-semibold font-serif'>Profile Billing Address</h1>
                     <hr />
                     <br />
                       <BillingForm billing={billing} />

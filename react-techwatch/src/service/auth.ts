@@ -6,10 +6,11 @@ import { IResetPass } from '../pages/ResetPass';
 import { SigInInterface } from '../pages/SignIn';
 import { socialInterface } from '../pages/SignInCallBack';
 import { SignUpInterface } from '../pages/SignUp';
+import { configEnv } from '../helper/config';
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000',
+    baseQuery: fetchBaseQuery({ baseUrl: configEnv.api_url,
     prepareHeaders: (headers, { getState, endpoint }) => {
         const token = (getState() as RootState).user.token
 

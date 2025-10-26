@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Categories from '../components/Categories'
 import Product from '../components/Product';
 import Spinner from '../components/Spinner';
@@ -20,9 +20,9 @@ const Index = (props: IndexProps) => {
 
   return (
     <div className='flex w-full h-auto'>
-      <div className='flex flex-row w-full space-x-6'>
+      <div className='flex flex-col sm:flex-row items-center sm:items-start w-full md:space-x-6'>
           <Categories />
-          <div className='mt-4'>
+          <div className='mt-4 mb-4'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {
                   data?.products?.map((product, index) => {

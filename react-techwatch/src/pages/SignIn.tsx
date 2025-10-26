@@ -72,8 +72,6 @@ const SignIn = (props: SignInProps) => {
     if(isLoading || socialLoginLoading) {
         return <Spinner />
     }
-    // console.log(watch("email")); // watch input value by passing the name of it;
-    // console.log(errors);
   return (
     <div className='flex w-full h-auto'>
         <div className='flex mx-auto'>

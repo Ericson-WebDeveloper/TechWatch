@@ -6,11 +6,12 @@ import { RootState } from '../feature';
 import { IGenericResponse } from '../models/Response';
 import { cartDetailsInterface, checkoutDetails } from '../pages/CheckOut';
 import { paymentDataResponseInterface } from '../pages/paypal/PaymentProcess';
+import { configEnv } from '../helper/config';
 
 
 export const paymentApi = createApi({
     reducerPath: 'paymentApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000',
+    baseQuery: fetchBaseQuery({ baseUrl: configEnv.api_url,
     prepareHeaders: (headers, { getState, endpoint }) => {
         const token = (getState() as RootState).user.token
 
