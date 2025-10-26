@@ -10,7 +10,7 @@ const Cart = (props: CartProps) => {
   return (
     <div className='flex w-full h-screen'>
       <div className='flex flex-row h-full w-full'>
-      	<div className="w-[50%] md:w-[60%] lg:w-[100%] py-12 mx-auto">
+      	<div className="w-[100%] py-12 mx-auto">
 		
 			<div className="w-full mx-auto bg-gray-100 shadow-lg rounded-lg  md:max-w-5xl">
 				<div className="md:flex">
@@ -18,7 +18,7 @@ const Cart = (props: CartProps) => {
 						<div className="flex w-full">
 						{/* <div className="md:grid md:grid-cols-3 gap-2 "> */}
 
-							<div className="col-span-2 w-full p-5">
+							<div className="col-span-2 w-full md:p-5">
 								<h1 className="text-xl font-medium ">TechWatch - Shopping Cart</h1>
 
 									{
@@ -32,13 +32,13 @@ const Cart = (props: CartProps) => {
 									}
 									
 
-									<div className="flex justify-between items-center mt-6 pt-6 border-t"> 
-										<div className="flex items-center">
+									<div className="flex flex-col-reverse gap-4 md:gap-0 md:flex-row justify-between items-center mt-6 pt-6 border-t"> 
+										<div className="flex items-center w-full">
 											<i className="fa fa-arrow-left text-sm pr-2"></i>
 											<Link to='/' className="text-md font-medium text-[#01C17D] hover:text-[#11998E]">Continue Shopping</Link>
 										</div>
 
-										<div className="flex justify-center items-end">
+										<div className="flex justify-end w-full items-center">
 											<span className="text-sm font-medium text-gray-400 mr-1">Subtotal:</span>
 											<span className="text-lg font-bold text-gray-800 ">
 												{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'PHP' }).format(totalPrice)}</span>				

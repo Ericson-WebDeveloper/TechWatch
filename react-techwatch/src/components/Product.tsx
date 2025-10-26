@@ -1,6 +1,6 @@
 import React from 'react'
 import { ProductInterface } from '../models/Product'
-import { useAppSelector, useAppDispatch } from '../feature/index';
+import { useAppDispatch } from '../feature/index';
 import { ADD_TO_CART, SET_TOTALPRICE, SET_TOTALQTY } from '../feature/cart/cartSlice';
 
 type ProductProps = {
@@ -8,7 +8,6 @@ type ProductProps = {
 }
 
 const Product = ({product}: ProductProps) => {
-    const {user, token} = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
     const addCart = () => {
@@ -18,7 +17,7 @@ const Product = ({product}: ProductProps) => {
     }
   return (
     <div className="flex justify-center">
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
+        <div className="rounded-lg shadow-lg bg-white w-full max-w-sm mx-2 md:mx-0">
             {/* <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light"> */}
                 <img className="rounded-t-lg w-[150px] mt-6 mx-auto hover:scale-125" src={`http://127.0.0.1:8000/images/${product.img}`} alt=""/>
             {/* </a> */}

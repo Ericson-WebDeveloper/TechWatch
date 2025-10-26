@@ -29,7 +29,6 @@ const PaymentDone = (props: PaymentDoneProps) => {
       let response: any = await getOrderAfterPayment(data).unwrap();
       setOrderDetails(response.data?.order);
     } catch (error) {
-      console.log(error);
       toast.error('Fetching Order Summary Failed');
     }
   }

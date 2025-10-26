@@ -37,9 +37,7 @@ export const cartSlice = createSlice({
             qty: 1
        }
        if(state.cart) {
-        console.log('here');
             let index = Array.from(state.cart!).findIndex(cart => cart.id === data.id) as number;
-            console.log(index);
             if(index !== -1) {
                 state.cart![index].qty = state.cart![index].qty + data.qty
                 // state.cart[index].price = state.cart[index].price * state.cart[index].qty

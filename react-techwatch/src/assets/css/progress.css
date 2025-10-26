@@ -108,6 +108,45 @@
     padding-bottom: 20px
 }
 
+
+#progressbar.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* adjust if needed */
+    padding-left: 0;
+}
+
+#progressbar.flex-col li {
+    width: 100%; /* full width for vertical */
+    float: none; /* remove horizontal float */
+    position: relative;
+    margin-bottom: 30px; /* spacing between steps */
+}
+
+#progressbar.flex-col li:before {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 0; /* align circles to left */
+    display: inline-block;
+}
+
+#progressbar.flex-col li:after {
+    content: '';
+    width: 4px; /* vertical line width */
+    height: 100%; /* full height of li */
+    background: #C5CAE9;
+    position: absolute;
+    left: 18px; /* center under the circle */
+    top: 40px; /* start below the circle */
+    z-index: -1;
+}
+
+#progressbar.flex-col li:last-child:after {
+    display: none; /* remove line after last step */
+}
+
+
 @media screen and (max-width: 992px) {
     .icon-content {
         width: 50%

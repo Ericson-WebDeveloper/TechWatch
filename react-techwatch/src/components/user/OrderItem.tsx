@@ -11,11 +11,11 @@ function OrderItem({order}: OrderItemProps) {
     <>
         <div className="w-full p-6 rounded-lg shadow-lg bg-white space-y-2">
             
-            <div className='flex p-3 bg-[rgb(1,192,125)] rounded-2xl items-center mb-2'>
-                <h5 className="text-white text-xl leading-tight font-medium mb-2 mr-2">
+            <div className='flex p-3 bg-[rgb(1,192,125)] rounded-2xl items-center mb-2 gap-3'>
+                <h5 className="text-white text-sm md:text-xl leading-tight font-medium">
                 { order.status === 1 ? 'Paid' : 'Not Paid' } - October 26th 2022, 9:20:27 am</h5>
-                <Link to={`/user/order/${order.id}`}>
-                    <button type="button" className="w-full px-6 py-2.5 bg-[#11998E] text-white font-medium text-xs leading-tight uppercase rounded shadow-md
+                <Link to={`/user/order/${order.id}`} className='flex items-center'>
+                    <button type="button" className="w-full px-4 md:px-6 py-2 md:py-2.5 bg-[#11998E] text-white font-medium text-xs leading-tight uppercase rounded shadow-md
                     hover:bg-[rgb(1,192,125)]hover:shadow-lg
                     focus:bg-[rgb(1,192,125)] focus:shadow-lg focus:outline-none focus:ring-0
                     active:bg-[rgb(1,192,125)] active:shadow-lg transition duration-150 ease-in-out">View</button>
@@ -28,13 +28,13 @@ function OrderItem({order}: OrderItemProps) {
                                     <img src={`http://127.0.0.1:8000/images/${item.img}`} className='w-[100px]' alt="" />
                                 </div>
                                 <div className='jusify-center items-center'>
-                                    <p>{ item.name }</p>
+                                    <p className='text-sm md:text-lg'>{ item.name }</p>
                                 </div>
                                 <div className='jusify-center items-center'>
-                                    <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'PHP' }).format(item.price)}</p>
+                                    <p className='text-sm md:text-lg'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'PHP' }).format(item.price)}</p>
                                 </div>
                                 <div className='jusify-center items-center'>
-                                    <p>Qty: { item.qty }</p>
+                                    <p className='text-sm md:text-lg'>Qty: { item.qty }</p>
                                 </div>
                         
                                 <div className='jusify-center items-center'>

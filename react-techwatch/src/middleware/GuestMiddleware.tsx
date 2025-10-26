@@ -11,7 +11,6 @@ function GuestMiddleware(props: Props) {
     if(token === null && user === null) { 
         return <Outlet /> 
     } else {
-        console.log('here')
         return <Navigate to='/' state={{ from: location }} replace />
     }
 }

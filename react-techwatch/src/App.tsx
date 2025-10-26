@@ -33,7 +33,8 @@ function App() {
     <div className="flex max-h-max w-full">
       <div className='flex flex-col h-[100vh] w-full'>
           <NavBar />
-        <div className='container mx-auto'>
+        <div className='w-full md:container mx-auto'>
+          {/*  px-4 */}
           <Routes>
             <Route path="/" element={<Index />} />
             <Route element={<GuestMiddleware />}>
