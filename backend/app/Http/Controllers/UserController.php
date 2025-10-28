@@ -16,17 +16,24 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
 
+    protected $userVerify;
+    protected $userModel;
+    public function __construct(UserVerify $userVerify, User $userModel)
+    {
+        $this->userVerify = $userVerify;
+        $this->userModel = $userModel;
+    }
 
     public function updateProfile(Request $request)
     {
         try {
             $user = request()->user();
 
-            $newuser = User::find($user->id);
+            $newuser = $this->userModel->find($user->id);
 
             $newuser->name = $request->input('name');
             $newuser->email = $request->input('email');
-            if($newuser->save()) {
+            if ($newuser->save()) {
                 return response()->json([
                     'message' => 'User Profile Updated!',
                     'data' => [
@@ -50,11 +57,11 @@ class UserController extends Controller
         try {
             $user = request()->user();
 
-            $newuser = User::find($user->id);
+            $newuser = $this->userModel->find($user->id);
 
             $newuser->password = Hash::make($request->input('password'));
 
-            if($newuser->save()) {
+            if ($newuser->save()) {
                 return response()->json([
                     'message' => 'User Password Updated!',
                     'data' => [
@@ -77,7 +84,7 @@ class UserController extends Controller
     {
         $user = request()->user();
 
-        $newuser = User::find($user->id);
+        $newuser = $this->userModel->find($user->id);
 
         return response()->json([
             'message' => 'User Billing Fetch!',
@@ -92,9 +99,9 @@ class UserController extends Controller
         try {
             $user = request()->user();
 
-            $newuser = User::find($user->id);
+            $newuser = $this->userModel->find($user->id);
 
-            if($newuser->billingaddress) {
+            if ($newuser->billingaddress) {
                 $result = $newuser->billingaddress()->update([
                     'province' => $request->province,
                     'city' => $request->city,
@@ -103,7 +110,7 @@ class UserController extends Controller
                     'street' => $request->street,
                     'house_no' => $request->house_no,
                 ]);
-                if($result) {
+                if ($result) {
                     return response()->json([
                         'message' => 'User Billing Update Success!',
                         'data' => [
@@ -124,7 +131,7 @@ class UserController extends Controller
                     'street' => $request->street,
                     'house_no' => $request->house_no,
                 ]);
-                if($result) {
+                if ($result) {
                     return response()->json([
                         'message' => 'User Billing Created Success!',
                         'data' => [
@@ -140,7 +147,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'error' => 'Something wrong in server!',
-                // $e->getMessage()
+                $e->getMessage()
             ], 500);
         }
     }
@@ -179,17 +186,18 @@ class UserController extends Controller
     {
         try {
             $user = DB::table('users')->where('email', '=', $request->email)->first();
-            if(!$user) {
+            if (!$user) {
                 return response()->json(['message' => 'Invalid email not exist in system'], 400);
             }
             // generate code 
             $code = $this->getTokenCode(10);
             // create record of verify code
-            $response = UserVerify::create([
-                'email' => $user->email, 
-                'code' => $code, 
-                'created' => now('Asia/Manila')]);
-            if(!$response) {
+            $response = $this->userVerify->create([
+                'email' => $user->email,
+                'code' => $code,
+                'created' => now('Asia/Manila')
+            ]);
+            if (!$response) {
                 return response()->json(['message' => 'Sorry you cannot reset your password this time. please try again later.'], 400);
             }
             // send to email the link of page where rest password
@@ -223,15 +231,14 @@ class UserController extends Controller
             }
 
             $response = DB::table('users')->where('email', '=', $verifyCode->email)
-            ->update(['password' => Hash::make($request->password)]);
+                ->update(['password' => Hash::make($request->password)]);
 
-            if($response == 0) {
+            if ($response == 0) {
                 DB::table('user_verifies')->where('code', '=', $request->code)->delete();
                 return response()->json(['message' => 'Password Updated Failed'], 400);
             } else {
                 return response()->json(['message' => 'Password Updated Success'], 200);
             }
-
         } catch (Exception $e) {
             return response()->json([
                 'error' => 'Something wrong in server!',
@@ -239,5 +246,4 @@ class UserController extends Controller
             ], 500);
         }
     }
-
 }

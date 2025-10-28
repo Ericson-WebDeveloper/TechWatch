@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -23,19 +24,17 @@ class AuthController extends Controller
                 'message' => 'Register Success!',
                 'data' => $user
             ], 201);
-        }catch(Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'error' => 'Something wrong in Server'
             ], 500);
         }
-
-
     }
 
     public function login(Request $request)
     {
-        try{
-            if(!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        try {
+            if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 return response()->json([
                     'error' => 'Invalid Credentials'
                 ], 400);
@@ -63,9 +62,9 @@ class AuthController extends Controller
     {
         try {
             $urlLink = Socialite::driver($request->provider)->stateless()->redirect()->getTargetUrl();
-
+            $provider = Str::ucfirst($request->provider);
             return response()->json([
-                'message' => 'Redirect to Google Login',
+                'message' => "Redirect to {$provider} Login",
                 'link' => $urlLink
             ], 200);
         } catch (\Exception $e) {
@@ -73,7 +72,6 @@ class AuthController extends Controller
                 'error' => 'Something wrong in Server',
             ], 500);
         }
-
     }
 
     public function login_social_callback(Request $request)
@@ -83,10 +81,9 @@ class AuthController extends Controller
 
             $userexist = User::where('email', $user->getEmail())->first();
 
-            if($userexist) {
+            if ($userexist) {
 
                 $token = $userexist->createToken('TechWatch')->plainTextToken;
-
             } else {
 
                 $userexist = User::create([
@@ -96,7 +93,6 @@ class AuthController extends Controller
                 ]);
 
                 $token = $userexist->createToken('TechWatch')->plainTextToken;
-
             }
 
             return response()->json([
@@ -106,14 +102,11 @@ class AuthController extends Controller
                     'user' => $userexist
                 ]
             ], 201);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'error' => 'Something wrong in Server',
                 $e->getMessage()
             ], 500);
         }
-
     }
-
-
 }
