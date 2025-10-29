@@ -46,60 +46,61 @@ const PaymentDone = (props: PaymentDoneProps) => {
           {
             orderDetails
             ?
-            <div className="flex flex-col w-full p-6">
+            <div className="flex flex-col w-full p-6 gap-4">
                 <div className='flex p-4 rounded-3xl w-full justify-center items-center bg-white'>
                   <h1 className='text-4xl font-serif font-semibold'>{status ? 'Success' : 'Failed'}</h1>
                 </div>
-                <br />
+                
                 <div className='flex flex-col p-4 rounded-3xl w-full bg-white'>
-                  <h1 className='text-2xl font-serif font-semibold'>Customer Name: {orderDetails?.order_item?.details.name}</h1>
-                  <br /><br />
-                  <h1 className='text-2xl font-serif font-semibold'>Thank you for Order</h1>
-                  <h1 className='text-xl font-serif font-semibold'>Payment Order Ref: {orderDetails?.approval_id}</h1>
-                  <br /><br />
-                  <h1 className='text-xg font-serif font-semibold'>Payment Summary</h1>
+                  <h1 className='text-xl md:text-2xl font-serif font-semibold text-center mb-2'>Customer Name: {orderDetails?.order_item?.details.name}</h1>
+                  
+                  <h1 className='text-xl md:text-2xl font-serif font-semibold text-center mb-2'>Thank you for Order</h1>
+               
+                  <h1 className='text-md md:text-xl font-serif font-semibold mb-4'>Payment Order Ref: {orderDetails?.approval_id}</h1>
+                 
+                  <h1 className='text-md md:text-xl font-serif font-semibold mb-2'>Payment Summary:</h1>
                   {/* Loop Items */}
                   {
                     orderDetails?.order_item?.items?.map((item: any, index: number) => {
-                      return <div className='flex flex-col lg:flex-row' key={index}>
-                                <div className='flex-none w-[65%]'>
-                                <b><p className='text-lg font-serif font-semibold'>{item.name } (Qty: { item.qty })</p></b>
+                      return <div className='flex flex-row items-center gap-2 md:gap-0' key={index}>
+                                <div className='flex-none w-[50%] md:w-[65%]'>
+                                <b><p className='text-md md:text-xl font-serif font-semibold'>{item.name } (Qty: { item.qty })</p></b>
                                 </div>
-                                <div className='flex-none w-[65%] w-b'>
-                                  Php { item.price }
+                                <div className='flex-none w-[50%] md:w-[35%] w-b'>
+                                  Php { new Intl.NumberFormat().format(item.price) }
                                 </div>
                               </div>
                     })
                   }
                   
-
+                  <hr />
                   <br /><br />
-                  <div className='flex flex-col lg:flex-row'>
+                  <div className='flex flex-row'>
                     <div className='flex-none w-[65%]'>
-                     <b><p className='text-lg font-serif font-semibold'>Shipping Fee</p></b>
+                     <b><p className='text:md md:text-lg font-serif font-semibold'>Shipping Fee</p></b>
                     </div>
-                    <div className='flex-none w-[65%] w-b'>
+                    <div className='flex-none text:md md:text-lg w-[35%] w-b'>
                     <small>Php 00.00</small>
                     </div>
                   </div>
 
-                  <div className='flex flex-col lg:flex-row'>
+                  <div className='flex flex-row'>
                     <div className='flex-none w-[65%]'>
-                     <b><p className='text-lg font-serif font-semibold'>Tax Fee</p></b>
+                     <b><p className='text:md md:text-lg font-serif font-semibold'>Tax Fee</p></b>
                     </div>
-                    <div className='flex-none w-[65%] w-b'>
+                    <div className='flex-none text:md md:text-lg w-[35%] w-b'>
                       <small>Php 00.00</small>
                     </div>
                   </div>
 
                   <br /><br />
-
-                  <div className='flex flex-col lg:flex-row'>
+                  <hr />
+                  <div className='flex flex-row mb-4'>
                     <div className='flex-none w-[65%]'>
-                     <b><p className='text-lg font-serif font-semibold'>Total</p></b>
+                     <b><p className='text:md md:text-lg font-serif font-semibold'>Total</p></b>
                     </div>
-                    <div className='flex-none w-[65%] w-b'>
-                    Php { orderDetails?.amount }
+                    <div className='flex-none text:md md:text-lg w-[35%] w-b'>
+                    <small>Php { new Intl.NumberFormat().format(orderDetails?.amount)  }</small>
                     </div>
                   </div>
                     <br />
@@ -107,7 +108,7 @@ const PaymentDone = (props: PaymentDoneProps) => {
                       orderDetails
                       ?
                       <button type='button' onClick={() => navigate(`/user/order-tracking/${orderDetails?.id}`)} 
-                      className='w-[150px] mx-auto px-6 py-2.5 bg-[#01C17D] text-white font-medium text-xs leading-tight uppercase rounded
+                      className='w-[150px] mx-auto px-4 md:px-6 py-2.5 bg-[#01C17D] text-white font-medium text-xs leading-tight uppercase rounded
                         shadow-md hover:bg-[#11998E] hover:shadow-lg focus:bg-[#11998E] focus:shadow-lg focus:outline-none focus:ring-0
                         active:bg-[#11998E] active:shadow-lg transition duration-150 ease-in-out'>Track Order</button>
                         

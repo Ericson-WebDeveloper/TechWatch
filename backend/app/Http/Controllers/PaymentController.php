@@ -9,22 +9,24 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
 class PaymentController extends Controller
 {
     use SendingEmail;
 
-    public $payment;
+    private $payment;
+    private $order;
 
-    public function __construct(PaymentInterface $paymentInterface)
+    public function __construct(PaymentInterface $paymentInterface, Order $order)
     {
         $this->payment = $paymentInterface;
+        $this->order = $order;
     }
 
     public function stripePost(Request $request)
     {
-        $payment = $this->payment;
+
         try {
+            $payment = $this->payment;
             $responsePaymentIntent = $payment->paymentIntent($request);
             $responsePaymentCapture = $payment->capture($responsePaymentIntent);
             if ($responsePaymentCapture->status == "succeeded") {
@@ -65,7 +67,7 @@ class PaymentController extends Controller
     {
         try {
 
-            $orderUpdate = Order::findorFail($request->order_id);
+            $orderUpdate = $this->order->findorFail($request->order_id);
 
             if (!$orderUpdate) {
                 return response()->json([
@@ -113,8 +115,8 @@ class PaymentController extends Controller
 
             if (!$orderLinks) {
                 return response()->json([
-                    'error' => 'paypal payment error.'
-                ], 200);
+                    'error' => 'paypal payment unavailable/error.'
+                ], 400);
             }
 
             $order = DB::transaction(function () use ($request, $response) {
@@ -143,14 +145,14 @@ class PaymentController extends Controller
             return response()->json($data, 200);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['error' => 'paypal payment error', 'message' => $e->getMessage()], 500);
+            return response()->json(['error' => 'paypal payment encounter error', 'message' => $e->getMessage()], 500);
         }
     }
 
     public function cancelOrderPayment(Request $request)
     {
         try {
-            $order = Order::find($request->orderId);
+            $order = $this->order->find($request->orderId);
 
             if ($order) {
                 $order->delete();
@@ -160,7 +162,7 @@ class PaymentController extends Controller
             }
             $user = request()->user();
 
-            $user->orders()->where('status', false)->get()->delete();
+            $user->orders()->where('status', false)->delete();
 
             return response()->json([
                 'message' => 'Cancel order payment Success',
@@ -168,6 +170,7 @@ class PaymentController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Something wrong in verify Cancel Payment',
+                $e->getMessage()
             ], 500);
         }
     }
@@ -175,7 +178,7 @@ class PaymentController extends Controller
     public function fetchOrder(Request $request)
     {
         try {
-            $order = Order::with('orderItem')->where([
+            $order = $this->order->with('orderItem')->where([
                 ['id', '=', $request->order_id],
                 ['approval_id', '=', $request->paymentId],
                 ['payer_id', '=', $request->payerId],
@@ -217,7 +220,7 @@ class PaymentController extends Controller
 
             $response = $payment->capture($request);
             // put in seperate function
-            $orderUpdate = Order::find($request->order_id);
+            $orderUpdate = $this->order->find($request->order_id);
             $orderUpdate->status = true;
             $orderUpdate->order_status = 'verified';
             $orderUpdate->payer_id = $request->PayerID;
